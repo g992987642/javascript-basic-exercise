@@ -7,6 +7,27 @@ export default function formatNumber(number, option) {
   //
   // * Please implement the function and pass all the tests in format_number_spec.js.
   // * Please do NOT modify the signature of the function.
+  const roundNumber = Math.round(number * 100) / 100;
+  let formattedNumber = roundNumber.toString();
+  let index = formattedNumber.indexOf('.');
+  let result = '';
+  if (index < 0) {
+    formattedNumber += '.';
+    index = formattedNumber.indexOf('.');
+  }
+  while (formattedNumber.length - index - 1 < 2) {
+    formattedNumber += '0';
+  }
 
-  throw new Error('Please delete this line and implement the function');
+
+  if (option !== undefined && option.currency === true) {
+    result = `$ ${formattedNumber}`;
+  } else {
+    result = formattedNumber;
+  }
+
+
+  return result;
+
+
 }
